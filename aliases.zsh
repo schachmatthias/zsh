@@ -4,12 +4,13 @@ alias swayconfig='cd ~/.config/sway'
 alias nconfig='~/.config/nvim && nvim'
 alias tmuxconfig='~/.config/tmux && nvim'
 alias gitconfig='cd ~/.config/gitcustom/'
+
 #General Dirs
 alias doc='cd ~/Documents'
 alias down='cd ~/Downloads'
 alias coding='cd ~/coding-projects'
 alias wissen='cd ~/Documents/wissen'
-alias todos='´nvim ~/Documents/todos.txt'
+alias todos='nvim ~/Documents/todos.txt'
 alias travel='cd ~/coding-projects/Travelbuddy/'
 
 #Commands
