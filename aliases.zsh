@@ -11,7 +11,12 @@ alias down='cd ~/Downloads'
 alias coding='cd ~/coding-projects'
 alias wissen='cd ~/Documents/wissen'
 alias todos='nvim ~/Documents/todos.txt'
-alias travel='cd ~/coding-projects/Travelbuddy/'
+alias travel='cd ~/coding-projects/Urlaubsgesellschaft/'
+
+#Windows Dirs (Working if this config is used in WSL)
+alias windoc='cd /mnt/c/Users/Matthias/Documents'
+alias winhome='cd /mnt/c/Users/Matthias'
+alias windown='cd /mnt/c/Users/Matthias/Downloads'
 
 #Commands
 alias n='nvim'
