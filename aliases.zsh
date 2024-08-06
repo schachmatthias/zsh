@@ -17,6 +17,7 @@ alias travel='cd ~/coding-projects/Urlaubsgesellschaft/'
 alias windoc='cd /mnt/c/Users/Matthias/Documents'
 alias winhome='cd /mnt/c/Users/Matthias'
 alias windown='cd /mnt/c/Users/Matthias/Downloads'
+alias winappdata='cd /mnt/c/Users/Matthias/AppData/Roaming'
 
 #Commands
 alias n='nvim'
