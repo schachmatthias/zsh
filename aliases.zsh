@@ -6,6 +6,7 @@ alias swayconfig='cd ~/.config/sway'
 alias nconfig='~/.config/nvim && nvim'
 alias tmuxconfig='~/.config/tmux && nvim'
 alias gitconfig='cd ~/.config/gitcustom/'
+alias alacrittyconfig='cd ~/.config/alacritty && nvim'
 
 #General Dirs
 alias doc='cd ~/Documents'
