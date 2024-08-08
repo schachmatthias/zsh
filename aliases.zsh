@@ -1,3 +1,5 @@
+source ~/.config/zsh/variables.zsh
+
 #Config files
 alias zshconfig='cd ~/.config/zsh'
 alias swayconfig='cd ~/.config/sway'
@@ -13,20 +15,15 @@ alias wissen='cd ~/Documents/wissen'
 alias todos='nvim ~/Documents/todos.txt'
 alias travel='cd ~/coding-projects/Urlaubsgesellschaft/'
 
-#Windows Dirs (Working if this config is used in WSL)
-alias windoc='cd /mnt/c/Users/Matthias/Documents'
-alias winhome='cd /mnt/c/Users/Matthias'
-alias windown='cd /mnt/c/Users/Matthias/Downloads'
-alias winappdata='cd /mnt/c/Users/Matthias/AppData/Roaming'
+#Win Dirs
+alias windoc="cd /mnt/c/Users/$WIN_USER_NAME/Documents"
+alias winhome="cd /mnt/c/Users/$WIN_USER_NAME"
+alias windown="cd /mnt/c/Users/$WIN_USER_NAME/Downloads"
+alias winappdata="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming"
 
 #Commands
 alias n='nvim'
 alias e='exit'
-alias mux='pgrep -vx tmux > /dev/null && \
-        tmux new -d -s delete-me && \
-        tmux run-shell ~/.tmux/plugins/tmux-resurrect/scripts/restore.sh && \
-        tmux kill-session -t delete-me && \
-        tmux attach || tmux attach'
 
 #Updates
 alias vscodeupdate='~/.config/zsh/update-vscode.sh'
