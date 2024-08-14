@@ -28,4 +28,4 @@ alias e='exit'
 
 #Updates
 alias vscodeupdate='~/.config/zsh/update-vscode.sh'
-alias linupdate='sudo apt update && sudo apt upgrade'
+alias linupdate='sudo apt update && sudo apt upgrade -y'
