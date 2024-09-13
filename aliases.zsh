@@ -21,6 +21,7 @@ alias windoc="cd /mnt/c/Users/$WIN_USER_NAME/Documents"
 alias winhome="cd /mnt/c/Users/$WIN_USER_NAME"
 alias windown="cd /mnt/c/Users/$WIN_USER_NAME/Downloads"
 alias winappdata="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming"
+alias winautostart="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Microsoft/Windows/'Start Menu'/Programs/Startup"
 
 #Commands
 alias n='nvim'
