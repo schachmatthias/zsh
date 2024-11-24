@@ -17,6 +17,7 @@ alias todos='nvim ~/Documents/todos.txt'
 alias travel='cd ~/coding-projects/Urlaubsgesellschaft/'
 alias three='cd ~/coding-projects/threejs/'
 alias discordbot='cd ~/coding-projects/discord-bot/'
+alias riddle='cd ~/coding-projects/riddle/'
 
 #Win Dirs
 alias windoc="cd /mnt/c/Users/$WIN_USER_NAME/Documents"
