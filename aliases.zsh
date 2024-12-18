@@ -27,6 +27,7 @@ alias windown="cd /mnt/c/Users/$WIN_USER_NAME/Downloads"
 alias winappdata="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming"
 alias winautostart="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Microsoft/Windows/'Start Menu'/Programs/Startup"
 alias winalacritty="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Alacritty"
+alias winprogramfiles="cd /mnt/c/'Program Files'/"
 
 #Commands
 alias n='nvim'
