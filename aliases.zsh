@@ -1,4 +1,5 @@
 source ~/.config/zsh/variables.zsh
+source ~/.config/zsh/private-projects.zsh
 
 #Config files
 alias zshconfig='cd ~/.config/zsh'
@@ -16,10 +17,6 @@ alias coding='cd ~/coding-projects'
 alias wissen='cd ~/Documents/wissen'
 alias todos='nvim ~/Documents/todos.txt'
 alias meetingnotes='nvim ~/Documents/meeting-notes.txt'
-alias travel='cd ~/coding-projects/Urlaubsgesellschaft/'
-alias three='cd ~/coding-projects/threejs/'
-alias discordbot='cd ~/coding-projects/discord-bot/'
-alias riddle='cd ~/coding-projects/riddle/'
 
 #Win Dirs
 alias windoc="cd /mnt/c/Users/$WIN_USER_NAME/Documents"
