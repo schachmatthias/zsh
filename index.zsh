@@ -24,6 +24,8 @@ export PATH="$BUN_INSTALL/bin:$PATH"
 # bun completions
 [ -s "/home/matthias/.bun/_bun" ] && source "/home/matthias/.bun/_bun"
 
+bindkey '^A' autosuggest-accept
+
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
 export XDG_SESSION_TYPE=wayland
 export XDG_CURRENT_DESKTOP=sway
