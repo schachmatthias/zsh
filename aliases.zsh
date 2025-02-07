@@ -1,5 +1,5 @@
 source ~/.config/zsh/variables.zsh
-source ~/.config/zsh/private-projects.zsh
+#source ~/.config/zsh/private-projects.zsh
 
 #Config files
 alias zshconfig='cd ~/.config/zsh'
