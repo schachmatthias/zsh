@@ -1,5 +1,5 @@
 source ~/.config/zsh/variables.zsh
-#source ~/.config/zsh/private-projects.zsh
+#source ~/.config/zsh/aliases-private.zsh
 
 #Config files
 alias zshconfig='cd ~/.config/zsh'
@@ -25,12 +25,16 @@ alias windown="cd /mnt/c/Users/$WIN_USER_NAME/Downloads"
 alias winappdata="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming"
 alias winautostart="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Microsoft/Windows/'Start Menu'/Programs/Startup"
 alias winalacritty="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Alacritty"
+
+alias winwezterm="cd /mnt/c/Users/$WIN_USER_NAME/"
 alias winprogramfiles="cd /mnt/c/'Program Files'/"
+alias winpowershellprofile="cd /mnt/c/Users/$WIN_USER_NAME/Documents/WindowsPowerShell"
 
 #Commands
 alias n='nvim'
 alias e='exit'
 alias jupyter="~/.local/bin/jupyter-notebook --no-browser"
+alias c="clear"
 
 #Updates
 alias vscodeupdate='~/.config/zsh/update-vscode.sh'
