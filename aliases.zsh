@@ -1,5 +1,5 @@
 source ~/.config/zsh/variables.zsh
-#source ~/.config/zsh/aliases-private.zsh
+source ~/.config/zsh/aliases-private.zsh
 
 #Config files
 alias zshconfig='cd ~/.config/zsh'
@@ -17,6 +17,7 @@ alias coding='cd ~/coding-projects'
 alias wissen='cd ~/Documents/wissen'
 alias todos='nvim ~/Documents/todos.txt'
 alias meetingnotes='nvim ~/Documents/meeting-notes.txt'
+alias wgsAgent='cd ~/coding-projects/wgs-agent-workflows'
 
 #Win Dirs
 alias windoc="cd /mnt/c/Users/$WIN_USER_NAME/Documents"
@@ -26,9 +27,9 @@ alias winappdata="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming"
 alias winautostart="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Microsoft/Windows/'Start Menu'/Programs/Startup"
 alias winalacritty="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Alacritty"
 
-alias winwezterm="cd /mnt/c/Users/$WIN_USER_NAME/"
+alias wezterm='"/mnt/c/Program Files/WezTerm/wezterm.exe"'
 alias winprogramfiles="cd /mnt/c/'Program Files'/"
-alias winpowershellprofile="cd /mnt/c/Users/$WIN_USER_NAME/Documents/WindowsPowerShell"
+alias winpowershellprofile="cd /mnt/c/Users/$WIN_USER_NAME/Documents/PowerShell"
 
 #Commands
 alias n='nvim'
