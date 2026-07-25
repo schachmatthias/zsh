@@ -1,20 +1,14 @@
-# Load configuration and private aliases
-source ~/.config/zsh/variables.zsh
-source ~/.config/zsh/aliases-private.zsh
-
 # ---------------------------
-# Config Files Aliases
+# Configuration directories
 # ---------------------------
 alias zshconfig='cd ~/.config/zsh'
-alias swayconfig='cd ~/.config/sway'
 alias nconfig='cd ~/.config/nvim && nvim'
 alias tmuxconfig='cd ~/.config/tmux && nvim'
 alias gitconfig='cd ~/.config/gitcustom'
-alias alacrittyconfig='cd ~/.config/alacritty && nvim'
 alias gitcustom='cd ~/.config/gitcustom'
 
 # ---------------------------
-# General Directories
+# Common directories
 # ---------------------------
 alias doc='cd ~/Documents'
 alias down='cd ~/Downloads'
@@ -22,35 +16,43 @@ alias coding='cd ~/coding-projects'
 alias wissen='cd ~/Documents/wissen'
 alias todos='nvim ~/Documents/todos.txt'
 alias meetingnotes='nvim ~/Documents/meeting-notes.txt'
-alias wgsAgent='cd ~/coding-projects/wgs-agent-workflows'
 
 # ---------------------------
-# Windows Directories (WSL)
-# ---------------------------
-alias windoc="cd /mnt/c/Users/$WIN_USER_NAME/Documents"
-alias winhome="cd /mnt/c/Users/$WIN_USER_NAME"
-alias windown="cd /mnt/c/Users/$WIN_USER_NAME/Downloads"
-alias winappdata="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming"
-alias winautostart="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Microsoft/Windows/'Start Menu'/Programs/Startup"
-alias winalacritty="cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Alacritty"
-
-# ---------------------------
-# Windows Applications
-# ---------------------------
-alias wezterm='"/mnt/c/Program Files/WezTerm/wezterm.exe"'
-alias winprogramfiles="cd /mnt/c/'Program Files'/"
-alias winpowershellprofile="cd /mnt/c/Users/$WIN_USER_NAME/Documents/PowerShell"
-
-# ---------------------------
-# Common Commands
+# Common commands
 # ---------------------------
 alias n='nvim'
 alias e='exit'
-alias jupyter="~/.local/bin/jupyter-notebook --no-browser"
-alias c="clear"
+alias c='clear'
 
-# ---------------------------
-# Update Commands
-# ---------------------------
-alias vscodeupdate='~/.config/zsh/update-vscode.sh'
-alias linupdate='sudo apt update && sudo apt upgrade -y'
+[[ -x "$HOME/.local/bin/jupyter-notebook" ]] \
+  && alias jupyter="$HOME/.local/bin/jupyter-notebook --no-browser"
+[[ -x "$HOME/.config/zsh/update-vscode.sh" ]] \
+  && alias vscodeupdate="$HOME/.config/zsh/update-vscode.sh"
+
+case "${MATTHIAS_ZSH_PLATFORM:-unknown}" in
+  wsl)
+    # WSL configuration directories
+    alias swayconfig='cd ~/.config/sway'
+    alias alacrittyconfig='cd ~/.config/alacritty && nvim'
+
+    # Windows directories
+    alias windoc='cd /mnt/c/Users/$WIN_USER_NAME/Documents'
+    alias winhome='cd /mnt/c/Users/$WIN_USER_NAME'
+    alias windown='cd /mnt/c/Users/$WIN_USER_NAME/Downloads'
+    alias winappdata='cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming'
+    alias winautostart='cd "/mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup"'
+    alias winalacritty='cd /mnt/c/Users/$WIN_USER_NAME/AppData/Roaming/Alacritty'
+
+    # Windows applications and updates
+    alias wezterm='"/mnt/c/Program Files/WezTerm/wezterm.exe"'
+    alias winprogramfiles='cd "/mnt/c/Program Files"'
+    alias winpowershellprofile='cd /mnt/c/Users/$WIN_USER_NAME/Documents/PowerShell'
+    alias linupdate='sudo apt update && sudo apt upgrade -y'
+    ;;
+  macos)
+    alias macupdate='softwareupdate --list'
+    ;;
+  linux)
+    alias linupdate='sudo apt update && sudo apt upgrade -y'
+    ;;
+esac

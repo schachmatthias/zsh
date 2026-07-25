@@ -1,35 +1,72 @@
-#!/usr/bin/zsh
+#!/usr/bin/env zsh
 
-source /usr/share/zsh-antigen/antigen.zsh
+typeset -g MATTHIAS_ZSH_DIR="${${(%):-%x}:A:h}"
 
-antigen use oh-my-zsh
-antigen bundle git
-antigen bundle composer
-antigen bundle zsh-users/zsh-syntax-highlighting
-antigen bundle zsh-users/zsh-autosuggestions
-antigen theme romkatv/powerlevel10k #you need to install powerline fonts for this theme (apt-get install powerline)
-antigen apply
-antigen bundle joshskidmore/zsh-fzf-history-search
+export NVM_DIR="${NVM_DIR:-$HOME/.nvm}"
+[[ -s "$NVM_DIR/nvm.sh" ]] && source "$NVM_DIR/nvm.sh"
+[[ -s "$NVM_DIR/bash_completion" ]] && source "$NVM_DIR/bash_completion"
 
-# custom keybinds
-source ~/.config/zsh/custom-keybinds.zsh
+export BUN_INSTALL="${BUN_INSTALL:-$HOME/.bun}"
+[[ -d "$BUN_INSTALL/bin" ]] && path=("$BUN_INSTALL/bin" $path)
+[[ -s "$BUN_INSTALL/_bun" ]] && source "$BUN_INSTALL/_bun"
 
-# nvim
-export PATH="$PATH:/opt/nvim-linux64/bin"
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+[[ -d "$HOME/.local/bin" ]] && path=("$HOME/.local/bin" $path)
 
+matthias_zsh_platform="${MATTHIAS_ZSH_PLATFORM:-}"
+if [[ -z "$matthias_zsh_platform" ]]; then
+  case "$OSTYPE" in
+    darwin*) matthias_zsh_platform="macos" ;;
+    linux*)
+      if [[ -r /proc/version ]] && grep -qi microsoft /proc/version; then
+        matthias_zsh_platform="wsl"
+      else
+        matthias_zsh_platform="linux"
+      fi
+      ;;
+    *) matthias_zsh_platform="unknown" ;;
+  esac
+fi
+typeset -g MATTHIAS_ZSH_PLATFORM="$matthias_zsh_platform"
+unset matthias_zsh_platform
 
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
+[[ -r "$MATTHIAS_ZSH_DIR/platform/$MATTHIAS_ZSH_PLATFORM.zsh" ]] \
+  && source "$MATTHIAS_ZSH_DIR/platform/$MATTHIAS_ZSH_PLATFORM.zsh"
 
-# bun completions
-[ -s "/home/matthias/.bun/_bun" ] && source "/home/matthias/.bun/_bun"
+if [[ "${MATTHIAS_ZSH_SKIP_PLUGINS:-0}" != "1" ]]; then
+  antigen_script=""
+  for candidate in \
+    "$HOME/.antigen/antigen.zsh" \
+    /usr/share/zsh-antigen/antigen.zsh \
+    /opt/homebrew/share/antigen/antigen.zsh; do
+    if [[ -r "$candidate" ]]; then
+      antigen_script="$candidate"
+      break
+    fi
+  done
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=4'
-export XDG_SESSION_TYPE=wayland
-export XDG_CURRENT_DESKTOP=sway
+  if [[ -n "$antigen_script" ]]; then
+    source "$antigen_script"
+    antigen use oh-my-zsh
+    antigen bundle git
+    antigen bundle composer
+    antigen bundle zsh-users/zsh-syntax-highlighting
+    antigen bundle zsh-users/zsh-autosuggestions
+    antigen bundle joshskidmore/zsh-fzf-history-search
+    antigen theme romkatv/powerlevel10k
+    antigen apply
+  else
+    print -u2 "matthias-zsh: Antigen is missing; run $MATTHIAS_ZSH_DIR/install.zsh"
+  fi
+  unset antigen_script candidate
+fi
 
-[[ ! -f ~/.config/zsh/p10k.zsh ]] || source ~/.config/zsh/p10k.zsh
+[[ -r "$MATTHIAS_ZSH_DIR/custom-keybinds.zsh" ]] \
+  && source "$MATTHIAS_ZSH_DIR/custom-keybinds.zsh"
+[[ -r "$MATTHIAS_ZSH_DIR/p10k.zsh" ]] \
+  && source "$MATTHIAS_ZSH_DIR/p10k.zsh"
+
+for optional_config in variables.zsh aliases-private.zsh private-projects.zsh; do
+  [[ -r "$MATTHIAS_ZSH_DIR/$optional_config" ]] \
+    && source "$MATTHIAS_ZSH_DIR/$optional_config"
+done
+unset optional_config

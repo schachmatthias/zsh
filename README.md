@@ -1,29 +1,60 @@
-My own zsh configuration divided into separate files to enhance overall organization and ease of understanding.
+# Matthias' Zsh configuration
 
-In order to make this work create .zshrc file in home directory and source those files. P10K should be on top for initial loading.
+Portable Zsh configuration shared by macOS, Linux, and WSL.
 
-something like this:
+## Fresh installation
 
+Zsh and Git must already be available. On macOS they are provided by the Xcode
+Command Line Tools.
+
+```zsh
+mkdir -p ~/.config
+git clone https://github.com/schachmatthias/zsh.git ~/.config/zsh
+~/.config/zsh/install.zsh
+exec zsh
 ```
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
+The installer:
 
-source ~/.config/zsh/index.zsh
-source ~/.config/zsh/wgs.zsh
-source ~/.config/zsh/aliases.zsh
-source ~/.config/zsh/docker.zsh
+- preserves an existing `.zshrc` and adds the loader only when missing;
+- creates `.zshrc` from `zshrc.template` on a fresh account;
+- installs Antigen into `~/.antigen` when necessary;
+- can be run repeatedly;
+- finishes with a compact environment diagnosis.
 
+To configure the shell without downloading plugins:
+
+```zsh
+~/.config/zsh/install.zsh --skip-plugins
 ```
 
-Antigen needs to be installed on the system
+## Structure
+
+- `index.zsh`: common environment, platform detection, plugins, and optional
+  private configuration.
+- `aliases.zsh`: common aliases plus guarded platform aliases.
+- `docker.zsh`: optional Docker helpers with prerequisite checks.
+- `platform/`: macOS, Linux, and WSL additions.
+- `doctor.zsh`: compact installation diagnosis.
+- `zshrc.template`: loader for a fresh home directory.
+- `test/smoke.zsh`: dependency-free syntax and loading smoke tests.
+
+Private files such as `variables.zsh` and `aliases-private.zsh` are loaded only
+when present and remain ignored by Git.
+
+## Node.js on a fresh Mac
+
+After NVM has been installed:
+
+```zsh
+nvm install 24
+nvm alias default 24
 ```
-sudo apt-get install zsh-antigen
 
+## Verification
+
+```zsh
+zsh -f test/smoke.zsh
+zsh -f test/install.zsh
+./doctor.zsh
 ```
-
-

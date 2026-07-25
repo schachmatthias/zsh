@@ -1,17 +1,35 @@
-
 startSmartHomeContainers() {
-	echo "Starting Containers..."
-	cd ~/coding-projects/smart-frontend
-	sudo docker compose up --detach
-	cd ~/coding-projects/smart-backend
-	sudo docker compose up --detach
-	echo "Smart Home Containers are ready for development;)"
+  if ! command -v docker >/dev/null 2>&1; then
+    print -u2 "Docker is not installed."
+    return 1
+  fi
+
+  local frontend="$HOME/coding-projects/smart-frontend"
+  local backend="$HOME/coding-projects/smart-backend"
+  [[ -d "$frontend" && -d "$backend" ]] || {
+    print -u2 "Smart Home repositories are missing."
+    return 1
+  }
+
+  print "Starting containers..."
+  (cd "$frontend" && docker compose up --detach) &&
+    (cd "$backend" && docker compose up --detach)
 }
 
 stopSmartHomeContainers() {
-	echo "Stopping Containers..."
-	sudo docker stop $(sudo docker ps -q)
-	echo "ALL CONTAINERS ARE STOPPED NOW"
+  if ! command -v docker >/dev/null 2>&1; then
+    print -u2 "Docker is not installed."
+    return 1
+  fi
+
+  local containers
+  containers=("${(@f)$(docker ps -q)}")
+  if (( ${#containers} == 0 )); then
+    print "No running containers."
+    return 0
+  fi
+
+  docker stop "${containers[@]}"
 }
 
 alias startSmartHome='startSmartHomeContainers'
